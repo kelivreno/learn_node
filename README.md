@@ -9,3 +9,11 @@
 -   Spin the slot and display the result to the user.
 -   Check if the user won by comparing the slot result to the winning combinations.
 -   Give the user their winnings if they won the bet.
+
+### Concepts learned 🧠
+- While loop
+- Functions
+- Data types (Constant, Float)
+- If-Else statements
+
+### Conclusion (●'◡'●):
