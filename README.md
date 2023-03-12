@@ -2,7 +2,7 @@
 
 ## Stack: Node.js 
 
-### Summary ✨
+### Features Summary ✨
 -   Deposit money into the domino machine.
 -   Determine the number of lines to bet on before spinning the slot.
 -   Collect the bet amount from the user.
