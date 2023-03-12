@@ -11,9 +11,22 @@
 -   Give the user their winnings if they won the bet.
 
 ### Concepts learned 🧠
-- While loop
+- While loop and For loop
 - Functions
 - Data types (Constant, Float)
 - If-Else statements
+- Array manipulation
+- Prompt-sync
+- Transposing a matrix/2d array/reels 
+
+### What's next?
+- Javascript ES6
+- Node's Async Nature (Promises and Callbacks)
+- Event-Driven Programming in Node
+- Learning react and express framework
+- Middleware
+- Version control tool and package management
+- Database management
+- Security
 
 ### Conclusion (●'◡'●):
