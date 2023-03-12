@@ -1,12 +1,3 @@
-// STEPS:
-// 1. Deposit some money
-// 2. Determine the number of lines to bet on
-// 3. Collect the bet amount
-// 4. Spin the slot amount
-// 5. Check if the user won
-// 6. Give the user the winnings
-// 7. Play again
-
 // Const = constant
 const prompt = require("prompt-sync")();
 
@@ -51,11 +42,12 @@ const deposit = () => {
 
 // In english, it means, if the statement of numberDepositAmount is NaN and is less than 0
 // It will return the prompt over and over again, unless it does not meet that criteria anymore
-// Therefore, the else is the 
+// Therefore, the else will return what was inputed by the user since it fullfills the criteria
+
 
 // DEPOSIT INPUT END
 
-// NUMBER OF LINES START 
+// NUMBER OF LINES START - Getting the number of lines the user wants to bet on
 
 const getNumberOfLines = () => {
     while (true) {
@@ -72,7 +64,8 @@ const getNumberOfLines = () => {
 
 // NUMBER OF LINES END
 
-// COLLECT BET AMOUNT START
+// COLLECT BET AMOUNT START - Getting a valid bet amount per line based on the balance and the number 
+// of lines they're betting on
 const getBet = (balance, lines) => {
     // We can use the balance inside this function 
     while (true) {
@@ -89,7 +82,8 @@ const getBet = (balance, lines) => {
 
 // COLLECT BET AMOUNT END
 
-// SPIN THE SLOT MACHINE START
+// SPIN THE SLOT MACHINE START - Generates all the symbols, then randomly select them
+
  const spin = () => {
     // This generate an array that contains the possible symbols that we have
     const symbols = [];
@@ -126,7 +120,7 @@ const getBet = (balance, lines) => {
 
 // SPIN THE SLOT MACHINE END
 
-// TRANSPOSE MATRIX START
+// TRANSPOSE MATRIX START - Converting all the columns into rows 
 const transpose = (reels) => {
     const rows = [];
     for (let i=0; i<ROWS; i++) {
@@ -141,7 +135,7 @@ const transpose = (reels) => {
 
 // TRANSPOSE MATRIX END
 
-// STYLED ROWS DISPLAY START  
+// STYLED ROWS DISPLAY START - Print rows in a nice and fancy format
 const printRows = (rows) => {
     for(const row of rows) {
         let rowString = "";  // Empty string is "";
@@ -158,19 +152,64 @@ const printRows = (rows) => {
 
     }
 };
-
-
 // STYLED ROWS DISPLAY END
 
-let balance = deposit();
-// A variable using let, can be altered (added or substracted)
-const numberOfLines = getNumberOfLines();
-const bet = getBet(balance, numberOfLines);
-const reels = spin();
-const rows = transpose(reels);
-console.log(reels);
-console.log(rows);
-printRows(rows);
+// GET WINNINGS START - Determining the all of the winnings from the specific reels
+const getWinnings = (rows, bet, numberOfLines) => {
+    // See how many lines they're checking based on the bet
+    // If they bet on three we're checking all of the rows
+    let winnings = 0;
+    for (let row=0; row < numberOfLines; row++) {
+        const symbols = rows[row];
+        let allSame = true;
+        for (const symbol of symbols) {
+            if(symbol != symbols[0]) {
+                allSame = false;
+                // We did not win
+                break; // Exit the for loop
+            }
+        }
 
-//  It will print out the deposit amount, console log is a print function
-//  It outputs a message to the web console/terminal
+        if (allSame) {
+            winnings += bet * SYMBOL_VALUES[symbols[0]]
+        }
+    }
+    return winnings;
+};
+// GET WINNINGS END
+
+// GAME FUNCTION - Continually play the game until the user ends a lot of money or until they
+// Don't want to play anymore
+const game = () => {
+    let balance = deposit();
+    // A variable using let, can be altered (added or substracted)
+    while (true) {
+        console.log("You have a balance of $" + balance);
+        const lines = getNumberOfLines();
+        const bet = getBet(balance, lines);
+        balance -= bet * lines;
+        const reels = spin();
+        const rows = transpose(reels);
+        console.log(reels);
+        console.log(rows);
+        printRows(rows);
+        const winnings = getWinnings(rows, bet, lines);
+        balance += winnings;
+        // The bet is per line
+        console.log("You won, $" + winnings.toString());
+        //  It will print out the deposit amount, console log is a print function
+        //  It outputs a message to the web console/terminal
+        if (balance <=0) {
+            console.log("You ran out of money!");
+            break;
+        }
+
+        const playAgain = prompt("Do you want to play again (y/n)? ");
+        if (playAgain != "y") break;
+
+    }
+};
+
+// GAME FUNCTION END
+
+game();

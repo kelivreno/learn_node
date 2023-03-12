@@ -2,15 +2,16 @@
 
 ## Stack: Node.js 
 
-### Features Summary ✨
--   Deposit money into the domino machine.
--   Determine the number of lines to bet on before spinning the slot.
--   Collect the bet amount from the user.
--   Spin the slot and display the result to the user.
--   Check if the user won by comparing the slot result to the winning combinations.
--   Give the user their winnings if they won the bet.
+### STEPS TO PLAY ✨:
+1. Deposit some money
+2. Determine the number of lines to bet on
+3. Collect the bet amount
+4. Spin the slot amount
+5. Check if the user won
+6. Give the user the winnings
+7. Play again （￣︶￣）↗　
 
-### Concepts learned 🧠
+### Concepts learned 🧠:
 - While loop and For loop
 - Functions
 - Data types (Constant, Float)
