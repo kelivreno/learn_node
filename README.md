@@ -31,3 +31,4 @@
 - Security
 
 ### Conclusion (●'◡'●):
+In conclusion, learning Node.js was a good experience overall. However, there were some parts of the code related to spinning the slot machine, transposing the matrix, displaying styled rows, and calculating winnings that were not fully understood. I need to build more projects with node.js.
